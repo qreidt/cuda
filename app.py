@@ -47,25 +47,17 @@ def knapSack(objs, we):
     objs = [objs[0]] + objs
 
     # TRABALHAR NA MATRIZ K[][] DE MANEIRA BOTTOM UP
-    for i, obj in enumerate(objs):
+    # PULANDO A PRIMEIRA LINHA DA MATRIZ
+    for i, obj in enumerate(objs[1:], start=1):
 
-        # PULAR A PRIMEIRA LINHA DA MATRIZ.
-        # TALVEZ DÊ PRA ARRANCAR ISSO MAS PROVAVELMENTE VAI AUMENTAR O
-        # PROCESSAMENTO DURENTE O LOOP ¯\_(ツ)_/¯
-        if i == 0:
-            continue
-
-        # PERCORRER A LINHA DE COMBINAÇÕES
-        for j, combinacao in enumerate(k[i]):
-
-            # PULAR A PRIMEIRA COLUNA
-            if j == 0:
-                continue
+        # PERCORRER A LINHA DE COMBINAÇÕES PULANDO A
+        # PRIMEIRA COLUNA DA LINHA
+        for j, combinacao in enumerate(k[i][1:], start=1):
 
             # LIMITAR O TAMANHO DO OBJETO QUE VAI ENTRAR NA COMBINAÇÃO
             # A MEDIDA QUE ELE VAI PERCORRENDO A LINHA, ELE LIBERA OBJETOS MAIORES
             # E A COMBINAÇÃO É FEITA COM OBJETOS MENORES DA LINHA ANTERIOR ( POR ISSO MANTER A PRIMEIRA LINHA VAZIA )
-            elif obj.peso <= j:
+            if obj.peso <= j:
 
                 # CALCULAR NOVO VALOR
                 value = obj.valor + k[i - 1][j - obj.peso].valor
