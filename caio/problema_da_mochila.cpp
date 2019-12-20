@@ -73,7 +73,7 @@ Mochila knapSack(int tamanho_da_mochila, vector<Objeto> *objetos) {
 
             if (objetos->at(i - 1).peso <= j) {
 
-                if (objetos->at(i - 1).valor + K[i - 1][j - objetos->at(i - 1).peso].valor > K[i - 1][j].valor) {
+                if (objetos->at(i).valor + K[i - 1][j - objetos->at(i).peso].valor > K[i - 1][j].valor) {
 
                     K[i][j] = K[i - 1][j - objetos->at(i).peso].combinar(objetos->at(i));
 
@@ -96,12 +96,37 @@ Mochila knapSack(int tamanho_da_mochila, vector<Objeto> *objetos) {
 
 int main() {
 
-    int tamanho_da_mochila = 5;
+    int tamanho_da_mochila = 550;
 
     vector<Objeto> objetos = {
-            Objeto(1, 1, 8),
-            Objeto(2, 2, 10),
-            Objeto(3, 3, 12),
+            Objeto(1, 26, 27),
+            Objeto(2, 17, 31),
+            Objeto(3, 23, 34),
+            Objeto(4, 6, 8),
+            Objeto(5, 5, 29),
+            Objeto(6, 15, 21),
+            Objeto(7, 28, 22),
+            Objeto(8, 19, 24),
+            Objeto(9, 20, 7),
+            Objeto(10, 5, 25),
+            Objeto(11, 15, 15),
+            Objeto(12, 32, 32),
+            Objeto(13, 11, 19),
+            Objeto(14, 16, 32),
+            Objeto(15, 11, 28),
+            Objeto(16, 23, 28),
+            Objeto(17, 30, 16),
+            Objeto(18, 14, 28),
+            Objeto(19, 20, 34),
+            Objeto(20, 15, 11),
+            Objeto(21, 26, 21),
+            Objeto(22, 30, 16),
+            Objeto(23, 30, 33),
+            Objeto(24, 30, 27),
+            Objeto(25, 18, 29),
+            Objeto(26, 31, 22),
+            Objeto(27, 35, 17),
+            Objeto(28, 15, 9),
     };
 
     knapSack(tamanho_da_mochila, &objetos).displayCompleto();
