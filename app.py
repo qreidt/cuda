@@ -12,6 +12,7 @@
 from builtins import range, len, enumerate
 from math import ceil, floor
 from threading import Thread
+from datetime import datetime
 
 
 class Objeto:  # CLASSE PARA FACILITAR A MANIPULAÇÃO DE ITENS
@@ -179,17 +180,22 @@ OBJS = [
 
 K = []
 
-# INICIAR O ALGORITMO COM OS VALORES DEFINIDOS ACIMA
-comb = knapSack(NUM_THREADS)
+antes_de_executar = datetime.now()  # ARMAZENAR DATA E HORA DO MOMENTO ANTES DE EXECUTAR O ALGORITMO
+
+melhor_combinacao = knapSack(NUM_THREADS)  # INICIAR O ALGORITMO COM OS VALORES DEFINIDOS ACIMA
+
+depois_de_executar = datetime.now()  # ARMAZENAR DATA E HORA DO MOMENTO DEPOIS DO ALGORITMO FINALIZAR
 
 peso_total = 0
-for item in comb.objetos:
+for item in melhor_combinacao.objetos:
     peso_total = peso_total + item.peso
 
 # MOSTRAR OS RESULTADOS NO TERMINAL
-print('Valor: %i' % comb.valor)
+print('Tempo de execução: ' + str(depois_de_executar - antes_de_executar))
+print('Valor: %i' % melhor_combinacao.valor)
 print('Peso Total: %i' % peso_total)
-print('Objetos: %i' % len(comb.objetos))
+print('Objetos: %i' % len(melhor_combinacao.objetos))
 
-for objeto in comb.objetos:
+for objeto in melhor_combinacao.objetos:
     print('\t' + 'ID: %i, Valor: %i, Peso: %i' % (objeto.id, objeto.valor, objeto.peso))
+
